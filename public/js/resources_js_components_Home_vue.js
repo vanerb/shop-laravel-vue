@@ -15,7 +15,9 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("h1", [_vm._v("HOME")]);
+  return _c("h1", {
+    staticClass: "text-center"
+  }, [_vm._v("INICIO")]);
 };
 var staticRenderFns = [];
 render._withStripped = true;

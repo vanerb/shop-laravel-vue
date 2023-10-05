@@ -12,23 +12,22 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        
         $user_id = $request->input('user_id');
+        $products = Product::where('user_id', $user_id)->get();
 
-        
-        $product = Product::where('user_id', $user_id)->get();
-
-        return response()->json($product);
+        return response()->json($products);
     }
 
     public function productall()
     {
-        $product = Product::all();
+        $perPage = Product::count(); // Número de productos por página
+        $page = request('page', 1); // Obtener el número de página de la solicitud
+        $products = Product::skip(($page - 1) * $perPage)->take($perPage)->get();
 
-        return response()->json($product);
+        return response()->json($products);
     }
 
-    
+
     /**
      * Store a newly created resource in storage.
      */
@@ -56,7 +55,7 @@ class ProductController extends Controller
     {
         $product->fill($request->post())->save();
         return response()->json([
-            'product'=>$product
+            'product' => $product
         ]);
     }
 
@@ -67,7 +66,7 @@ class ProductController extends Controller
     {
         $product->delete();
         return response()->json([
-            'mensaje'=>'producto borrado con exito'
+            'mensaje' => 'producto borrado con exito'
         ]);
     }
 }

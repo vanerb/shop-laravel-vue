@@ -185,7 +185,7 @@ var staticRenderFns = [function () {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "card-header"
-  }, [_c("h1", [_vm._v("Edit user")])]);
+  }, [_c("h1", [_vm._v("Editar usuario")])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -196,7 +196,7 @@ var staticRenderFns = [function () {
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("\n                Edit\n              ")])]);
+  }, [_vm._v("\n                Editar\n              ")])]);
 }];
 render._withStripped = true;
 

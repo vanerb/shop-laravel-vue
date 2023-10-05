@@ -2,17 +2,17 @@
   <div class="container">
     <div class="card">
       <div class="card-header">
-        <h4>Edit product</h4>
+        <h4>Editar producto</h4>
       </div>
       <div class="card-body">
         <form @submit.prevent="actualize">
           <div class="form-group">
-            <label>Name</label>
+            <label>Nombre</label>
             <input type="text" class="form-control" v-model="product.name" />
           </div>
 
           <div class="form-group">
-            <label>Description</label>
+            <label>Descripción</label>
             <input
               type="text"
               class="form-control"
@@ -21,7 +21,7 @@
           </div>
 
           <div class="form-group">
-            <label>Price</label>
+            <label>Precio</label>
             <input type="text" class="form-control" v-model="product.price" />
           </div>
 
@@ -38,7 +38,7 @@
             </select>
           </div>
 
-          <button type="submit" class="btn btn-success mt-4">Edit</button>
+          <button type="submit" class="btn btn-success mt-4">Editar</button>
         </form>
       </div>
     </div>
@@ -115,7 +115,7 @@ export default {
         .put(`/api/product/${this.$route.params.id}`, this.product)
         .then((response) => {
           this.$router.push({
-            name: "shop",
+            name: "showproduct",
           });
         })
         .catch((error) => {

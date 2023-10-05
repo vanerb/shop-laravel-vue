@@ -4,7 +4,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h1>Edit user</h1>
+            <h1>Editar usuario</h1>
           </div>
           <div class="card-body">
             <form @submit.prevent="actualize">
@@ -36,7 +36,7 @@
 
               <div class="form-group mt-2">
                 <button class="btn btn-success" type="submit">
-                  Edit
+                  Editar
                 </button>
               </div>
             </form>

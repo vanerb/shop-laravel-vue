@@ -12,7 +12,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::all();
+
+        $perPage = User::count(); // Número de productos por página
+        $page = request('page', 1); // Obtener el número de página de la solicitud
+        $user = User::skip(($page - 1) * $perPage)->take($perPage)->get();
         return response()->json($user);
     }
 

@@ -2,17 +2,17 @@
   <div class="container">
     <div class="card">
       <div class="card-header">
-        <h4>Add product</h4>
+        <h4>Añadir producto</h4>
       </div>
       <div class="card-body">
         <form @submit.prevent="addproduct">
           <div class="form-group">
-            <label>Name</label>
+            <label>Nombre</label>
             <input type="text" class="form-control" v-model="product.name" />
           </div>
 
           <div class="form-group">
-            <label>Description</label>
+            <label>Descripción</label>
             <input
               type="text"
               class="form-control"
@@ -21,12 +21,12 @@
           </div>
 
           <div class="form-group">
-            <label>Price</label>
+            <label>Precio</label>
             <input type="text" class="form-control" v-model="product.price" />
           </div>
 
           <div class="form-group">
-            <label>Categoria</label>
+            <label>Categoría</label>
             <select class="form-control" v-model="product.category_id">
               <option
                 v-for="category in categorys"
@@ -81,7 +81,7 @@ export default {
       await this.axios
         .post("/api/product", this.product)
         .then((response) => {
-          this.$router.push({ name: "products" });
+          this.$router.push({ name: "showproduct" });
         })
         .catch((error) => {
           console.log(error);

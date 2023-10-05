@@ -1,25 +1,27 @@
 <template>
   <div class="container">
-    
-
     <div class="row">
       <div class="col-md-12">
         <table class="table table-dark table-striped table-hover mt-4">
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">Description</th>
-              <th scope="col">Price</th>
-              <th scope="col">User</th>
-              <th scope="col">Category</th>
-              <th colspan="2"><router-link :to="{ name: 'addproduct' }" class="btn btn-success text-center"
-          >Add</router-link
-        ></th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Descipción</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Usuario</th>
+              <th scope="col">Categoría</th>
+              <th colspan="2">
+                <router-link
+                  :to="{ name: 'addproduct' }"
+                  class="btn btn-success text-center"
+                  >Añadir</router-link
+                >
+              </th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="product in products" :key="product.id">
+            <tr v-for="(product) in displayedProducts" :key="product.id">
               <th>{{ product.id }}</th>
               <td>{{ product.name }}</td>
               <td>{{ product.description }}</td>
@@ -33,7 +35,7 @@
                     params: { id: product.id },
                   }"
                   class="btn btn-primary"
-                  >Edit</router-link
+                  >Editar</router-link
                 >
               </td>
               <td>
@@ -41,12 +43,32 @@
                   type="button"
                   @click="deleteproduct(product.id)"
                   class="btn btn-danger"
-                  >Delete</a
+                  >Eliminar</a
                 >
               </td>
             </tr>
           </tbody>
         </table>
+
+        <div class="text-center mt-4 mb-4">
+          <button
+            class="btn btn-secondary"
+            @click="prevPage"
+            :disabled="currentPage === 1"
+          >
+            Anterior
+          </button>
+          <span>{{ currentPage }}</span>
+          <button
+            class="btn btn-secondary"
+            @click="nextPage"
+            :disabled="
+              currentPage * productsPerPage >= products.length
+            "
+          >
+            Siguiente
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -66,12 +88,19 @@ export default {
       // Acceder a las propiedades del objeto
       return userObject;
     },
+     displayedProducts() {
+      const startIndex = (this.currentPage - 1) * this.productsPerPage;
+      const endIndex = startIndex + this.productsPerPage;
+      return this.products.slice(startIndex, endIndex);
+    },
   },
   data() {
     return {
+      currentPage: 1, // Página actual
+      productsPerPage: 6, // Productos por página
       products: [],
       categorys: [],
-      users: []
+      users: [],
     };
   },
   mounted() {
@@ -81,6 +110,17 @@ export default {
     this.showUsers();
   },
   methods: {
+     prevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    },
+    nextPage() {
+      const lastPage = Math.ceil(this.products.length / this.productsPerPage);
+      if (this.currentPage < lastPage) {
+        this.currentPage++;
+      }
+    },
     CleanNumber(numeroString) {
       const numero = parseInt(numeroString, 10); // Convierte la cadena en un número entero
       return numero.toString(); // Convierte el número nuevamente en una cadena
@@ -97,7 +137,7 @@ export default {
 
       return categoryName ? categoryName : "N/A";
     },
-    getUserById(userId){
+    getUserById(userId) {
       const userIdToName = {};
       this.users.forEach((user) => {
         userIdToName[user.id] = user.name;

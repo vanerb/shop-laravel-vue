@@ -103,7 +103,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _this3.product.user_id = _this3.info.user_id;
               _this3.axios.put("/api/product/".concat(_this3.$route.params.id), _this3.product).then(function (response) {
                 _this3.$router.push({
-                  name: "shop"
+                  name: "showproduct"
                 });
               })["catch"](function (error) {
                 console.log(error);
@@ -149,7 +149,7 @@ var render = function render() {
     }
   }, [_c("div", {
     staticClass: "form-group"
-  }, [_c("label", [_vm._v("Name")]), _vm._v(" "), _c("input", {
+  }, [_c("label", [_vm._v("Nombre")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -171,7 +171,7 @@ var render = function render() {
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
-  }, [_c("label", [_vm._v("Description")]), _vm._v(" "), _c("input", {
+  }, [_c("label", [_vm._v("Descripción")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -193,7 +193,7 @@ var render = function render() {
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
-  }, [_c("label", [_vm._v("Price")]), _vm._v(" "), _c("input", {
+  }, [_c("label", [_vm._v("Precio")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -246,14 +246,14 @@ var render = function render() {
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("Edit")])])])])]);
+  }, [_vm._v("Editar")])])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "card-header"
-  }, [_c("h4", [_vm._v("Edit product")])]);
+  }, [_c("h4", [_vm._v("Editar producto")])]);
 }];
 render._withStripped = true;
 

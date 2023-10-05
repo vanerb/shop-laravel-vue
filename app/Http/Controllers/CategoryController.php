@@ -12,8 +12,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        
-        $category = Category::all();
+        $perPage = Category::count(); // Número de productos por página
+        $page = request('page', 1); // Obtener el número de página de la solicitud
+
+        $category = Category::skip(($page - 1) * $perPage)->take($perPage)->get();
 
         return response()->json( $category);
     }

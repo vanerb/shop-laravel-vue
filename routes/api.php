@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BasketController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -26,5 +27,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('product', ProductController::class)->only(['index', 'store', 'update', 'show', 'destroy']);
 Route::get('/productall', [ProductController::class, 'productall'])->name('productall');
 Route::resource('category', CategoryController::class)->only(['index', 'store', 'update', 'show', 'destroy']);
+Route::resource('basket', BasketController::class)->only(['index', 'store', 'update', 'show', 'destroy']);
 Route::resource('user', UserController::class)->only(['index', 'store', 'update', 'show', 'destroy']);
 Route::post('login', 'App\Http\Controllers\AuthController@login')->name('login');

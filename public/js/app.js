@@ -5188,6 +5188,17 @@ var render = function render() {
   }, [_c("router-link", {
     staticClass: "nav-link btn btn-link",
     attrs: {
+      "exact-active-class": "active",
+      to: {
+        name: "showbasket"
+      }
+    }
+  }, [_vm._v("Cesta")])], 1) : _vm._e(), _vm._v(" "), _vm.isAdmin ? _c("li", {
+    staticClass: "nav-item"
+  }, [_c("router-link", {
+    staticClass: "nav-link btn btn-link",
+    attrs: {
+      "exact-active-class": "active",
       to: {
         name: "adminpanel"
       }
@@ -5213,12 +5224,18 @@ var render = function render() {
     on: {
       click: _vm.logout
     }
-  }, [_vm._v("Cerrar Sesión")])]) : _vm._e(), _vm._v(" "), _vm.isLoggedIn ? _c("li", [_c("a", {
+  }, [_vm._v("Cerrar Sesión")])]) : _vm._e(), _vm._v(" "), _vm.isLoggedIn ? _c("li", [_c("router-link", {
     staticClass: "nav-link btn btn-link",
     attrs: {
-      href: "/"
+      "exact-active-class": "active",
+      to: {
+        name: "edituser",
+        params: {
+          id: _vm.info.user.id
+        }
+      }
     }
-  }, [_vm._v(" " + _vm._s(_vm.info.user.name))])]) : _vm._e()])])]), _vm._v(" "), _c("div", [_c("router-view")], 1)]);
+  }, [_vm._v(_vm._s(_vm.info.user.name))])], 1) : _vm._e()])])]), _vm._v(" "), _c("div", [_c("router-view")], 1)]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -5403,6 +5420,12 @@ var EditUser = function EditUser() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_user_Edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/user/Edit.vue */ "./resources/js/components/user/Edit.vue"));
 };
 
+//Rutas cesta
+
+var ShowBasket = function ShowBasket() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_basket_Show_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/basket/Show.vue */ "./resources/js/components/basket/Show.vue"));
+};
+
 //Establecer rutas
 
 var routes = [{
@@ -5469,6 +5492,10 @@ var routes = [{
   name: 'edituser',
   path: '/edituser/:id',
   component: EditUser
+}, {
+  name: 'showbasket',
+  path: '/showbasket',
+  component: ShowBasket
 }];
 
 /***/ }),
@@ -25597,7 +25624,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_Home_vue":1,"resources_js_components_Contact_vue":1,"resources_js_components_Shop_vue":1,"resources_js_components_AdminPanel_vue":1,"resources_js_components_products_Show_vue":1,"resources_js_components_products_Edit_vue":1,"resources_js_components_products_Add_vue":1,"resources_js_components_category_Show_vue":1,"resources_js_components_category_Edit_vue":1,"resources_js_components_category_Add_vue":1,"resources_js_components_user_Login_vue":1,"resources_js_components_user_Register_vue":1,"resources_js_components_user_Logout_vue":1,"resources_js_components_user_Show_vue":1,"resources_js_components_user_Edit_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_Home_vue":1,"resources_js_components_Contact_vue":1,"resources_js_components_Shop_vue":1,"resources_js_components_AdminPanel_vue":1,"resources_js_components_products_Show_vue":1,"resources_js_components_products_Edit_vue":1,"resources_js_components_products_Add_vue":1,"resources_js_components_category_Show_vue":1,"resources_js_components_category_Edit_vue":1,"resources_js_components_category_Add_vue":1,"resources_js_components_user_Login_vue":1,"resources_js_components_user_Register_vue":1,"resources_js_components_user_Logout_vue":1,"resources_js_components_user_Show_vue":1,"resources_js_components_user_Edit_vue":1,"resources_js_components_basket_Show_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

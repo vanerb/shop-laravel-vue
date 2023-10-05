@@ -27,6 +27,11 @@ const Logout = ()=> import('./components/user/Logout.vue');
 const ShowUser = ()=>import('./components/user/Show.vue');
 const EditUser = ()=>import('./components/user/Edit.vue');
 
+
+//Rutas cesta
+
+const ShowBasket = ()=>import('./components/basket/Show.vue');
+
 //Establecer rutas
 
 export const routes = [
@@ -109,6 +114,11 @@ export const routes = [
         name:'edituser',
         path: '/edituser/:id',
         component: EditUser
+     },
+     {
+        name:'showbasket',
+        path: '/showbasket',
+        component: ShowBasket
      },
 
 

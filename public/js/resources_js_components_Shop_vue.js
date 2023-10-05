@@ -19,13 +19,49 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   name: "products",
   data: function data() {
     return {
+      currentPage: 1,
+      // Página actual
+      productsPerPage: 9,
+      // Productos por página
+      basket: {
+        product_id: "",
+        user_id: ""
+      },
       products: []
     };
+  },
+  computed: {
+    info: function info() {
+      // Obtener la cadena JSON de sessionStorage
+      var userData = sessionStorage.getItem("user");
+
+      // Parsear la cadena JSON en un objeto JavaScript
+      var userObject = JSON.parse(userData);
+
+      // Acceder a las propiedades del objeto
+      return userObject;
+    },
+    displayedProducts: function displayedProducts() {
+      var startIndex = (this.currentPage - 1) * this.productsPerPage;
+      var endIndex = startIndex + this.productsPerPage;
+      return this.products.slice(startIndex, endIndex);
+    }
   },
   mounted: function mounted() {
     this.showProducts();
   },
   methods: {
+    prevPage: function prevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    },
+    nextPage: function nextPage() {
+      var lastPage = Math.ceil(this.products.length / this.productsPerPage);
+      if (this.currentPage < lastPage) {
+        this.currentPage++;
+      }
+    },
     showProducts: function showProducts() {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -44,6 +80,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return _context.stop();
           }
         }, _callee);
+      }))();
+    },
+    comprar: function comprar(prod_id) {
+      var _this2 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              console.log("LLama funcion");
+              _this2.basket.user_id = _this2.info.user_id;
+              _this2.basket.product_id = prod_id;
+              console.log(_this2.basket);
+              _context2.next = 6;
+              return _this2.axios.post("/api/basket", _this2.basket).then(function (response) {
+                console.log(response);
+              })["catch"](function (error) {
+                console.log(error);
+              });
+            case 6:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2);
       }))();
     }
   }
@@ -69,9 +128,9 @@ var render = function render() {
     staticClass: "container"
   }, [_c("h1", {
     staticClass: "text-center"
-  }, [_vm._v("SHOP")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("TIENDA")]), _vm._v(" "), _c("div", {
     staticClass: "row"
-  }, _vm._l(_vm.products, function (product) {
+  }, _vm._l(_vm.displayedProducts, function (product) {
     return _c("div", {
       key: product.id,
       staticClass: "col-md-4 mt-4"
@@ -81,18 +140,37 @@ var render = function render() {
       staticClass: "card-header text-center"
     }, [_c("h1", [_vm._v(_vm._s(product.name))])]), _vm._v(" "), _c("div", {
       staticClass: "card-body text-center"
-    }, [_c("p", [_vm._v(_vm._s(product.description))]), _vm._v(" "), _c("h4", [_vm._v(_vm._s(product.price) + " €")])]), _vm._v(" "), _vm._m(0, true)])]);
-  }), 0)]);
-};
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "card-footer"
+    }, [_c("p", [_vm._v(_vm._s(product.description))]), _vm._v(" "), _c("h4", [_vm._v(_vm._s(product.price) + " €")])]), _vm._v(" "), _c("div", {
+      staticClass: "card-footer"
+    }, [_c("button", {
+      staticClass: "btn btn-success w-100",
+      on: {
+        click: function click($event) {
+          return _vm.comprar(product.id);
+        }
+      }
+    }, [_vm._v("\n            Comprar\n          ")])])])]);
+  }), 0), _vm._v(" "), _c("div", {
+    staticClass: "text-center mt-4 mb-4"
   }, [_c("button", {
-    staticClass: "btn btn-success w-100"
-  }, [_vm._v("Comprar")])]);
-}];
+    staticClass: "btn btn-secondary",
+    attrs: {
+      disabled: _vm.currentPage === 1
+    },
+    on: {
+      click: _vm.prevPage
+    }
+  }, [_vm._v("Anterior")]), _vm._v(" "), _c("span", [_vm._v(_vm._s(_vm.currentPage))]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-secondary",
+    attrs: {
+      disabled: _vm.currentPage * _vm.productsPerPage >= _vm.products.length
+    },
+    on: {
+      click: _vm.nextPage
+    }
+  }, [_vm._v("\n      Siguiente\n    ")])])]);
+};
+var staticRenderFns = [];
 render._withStripped = true;
 
 

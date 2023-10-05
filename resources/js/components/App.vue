@@ -50,6 +50,15 @@
         <ul class="navbar-nav float-end mr-2">
           <li v-if="isAdmin" class="nav-item">
             <router-link
+            exact-active-class="active"
+              :to="{ name: 'showbasket' }"
+              class="nav-link btn btn-link"
+              >Cesta</router-link
+            >
+          </li>
+          <li v-if="isAdmin" class="nav-item">
+            <router-link
+            exact-active-class="active"
               :to="{ name: 'adminpanel' }"
               class="nav-link btn btn-link"
               >Administrar</router-link
@@ -69,7 +78,8 @@
             <a class="nav-link btn btn-link" @click="logout">Cerrar Sesión</a>
           </li>
           <li v-if="isLoggedIn">
-            <a class="nav-link btn btn-link" href="/"> {{ info.user.name }}</a>
+            <router-link exact-active-class="active" class="nav-link btn btn-link" :to="{name: 'edituser', params: { id: info.user.id}}">{{ info.user.name }}</router-link>
+           
           </li>
         </ul>
       </div>

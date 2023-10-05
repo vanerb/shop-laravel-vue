@@ -19,14 +19,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   name: "categorys",
   data: function data() {
     return {
+      currentPage: 1,
+      // Página actual
+      categorysPerPage: 6,
+      // Productos por página
       categorys: []
     };
+  },
+  computed: {
+    displayedCategorys: function displayedCategorys() {
+      var startIndex = (this.currentPage - 1) * this.categorysPerPage;
+      var endIndex = startIndex + this.categorysPerPage;
+      return this.categorys.slice(startIndex, endIndex);
+    }
   },
   mounted: function mounted() {
     console.log("Component mounted");
     this.showCategory();
   },
   methods: {
+    prevPage: function prevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    },
+    nextPage: function nextPage() {
+      var lastPage = Math.ceil(this.categorys.length / this.categorysPerPage);
+      if (this.currentPage < lastPage) {
+        this.currentPage++;
+      }
+    },
     showCategory: function showCategory() {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -100,7 +122,7 @@ var render = function render() {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("Name")]), _vm._v(" "), _c("th", {
+  }, [_vm._v("Nombre")]), _vm._v(" "), _c("th", {
     attrs: {
       colspan: "2"
     }
@@ -111,7 +133,7 @@ var render = function render() {
         name: "addcategory"
       }
     }
-  }, [_vm._v("Add")])], 1)])]), _vm._v(" "), _c("tbody", _vm._l(_vm.categorys, function (category) {
+  }, [_vm._v("Añadir")])], 1)])]), _vm._v(" "), _c("tbody", _vm._l(_vm.displayedCategorys, function (category) {
     return _c("tr", {
       key: category.id
     }, [_c("th", [_vm._v(_vm._s(category.id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(category.name))]), _vm._v(" "), _c("td", [_c("router-link", {
@@ -124,7 +146,7 @@ var render = function render() {
           }
         }
       }
-    }, [_vm._v("Edit")])], 1), _vm._v(" "), _c("td", [_c("a", {
+    }, [_vm._v("Editar")])], 1), _vm._v(" "), _c("td", [_c("a", {
       staticClass: "btn btn-danger",
       attrs: {
         type: "button"
@@ -134,8 +156,26 @@ var render = function render() {
           return _vm.deletecategory(category.id);
         }
       }
-    }, [_vm._v("Delete")])])]);
-  }), 0)])])])]);
+    }, [_vm._v("Eliminar")])])]);
+  }), 0)]), _vm._v(" "), _c("div", {
+    staticClass: "text-center mt-4 mb-4"
+  }, [_c("button", {
+    staticClass: "btn btn-secondary",
+    attrs: {
+      disabled: _vm.currentPage === 1
+    },
+    on: {
+      click: _vm.prevPage
+    }
+  }, [_vm._v("\n          Anterior\n        ")]), _vm._v(" "), _c("span", [_vm._v(_vm._s(_vm.currentPage))]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-secondary",
+    attrs: {
+      disabled: _vm.currentPage * _vm.categorysPerPage >= _vm.categorys.length
+    },
+    on: {
+      click: _vm.nextPage
+    }
+  }, [_vm._v("\n          Siguiente\n        ")])])])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;

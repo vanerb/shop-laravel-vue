@@ -2,12 +2,12 @@
   <div class="container">
     <div class="card">
       <div class="card-header">
-        <h4>Add category</h4>
+        <h4>Añadir categoría</h4>
       </div>
       <div class="card-body">
         <form @submit.prevent="addcategory">
           <div class="form-group">
-            <label>Name</label>
+            <label>Nombre</label>
             <input type="text" class="form-control" v-model="category.name" />
           </div>
 
@@ -36,7 +36,7 @@ export default {
       await this.axios
         .post("/api/category", this.category)
         .then((response) => {
-          this.$router.push({ name: "categorys" });
+          this.$router.push({ name: "showcategory" });
         })
         .catch((error) => {
           console.log(error);

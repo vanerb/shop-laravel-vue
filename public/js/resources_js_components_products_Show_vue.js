@@ -27,10 +27,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       // Acceder a las propiedades del objeto
       return userObject;
+    },
+    displayedProducts: function displayedProducts() {
+      var startIndex = (this.currentPage - 1) * this.productsPerPage;
+      var endIndex = startIndex + this.productsPerPage;
+      return this.products.slice(startIndex, endIndex);
     }
   },
   data: function data() {
     return {
+      currentPage: 1,
+      // Página actual
+      productsPerPage: 6,
+      // Productos por página
       products: [],
       categorys: [],
       users: []
@@ -43,6 +52,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.showUsers();
   },
   methods: {
+    prevPage: function prevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    },
+    nextPage: function nextPage() {
+      var lastPage = Math.ceil(this.products.length / this.productsPerPage);
+      if (this.currentPage < lastPage) {
+        this.currentPage++;
+      }
+    },
     CleanNumber: function CleanNumber(numeroString) {
       var numero = parseInt(numeroString, 10); // Convierte la cadena en un número entero
       return numero.toString(); // Convierte el número nuevamente en una cadena
@@ -183,23 +203,23 @@ var render = function render() {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("Name")]), _vm._v(" "), _c("th", {
+  }, [_vm._v("Nombre")]), _vm._v(" "), _c("th", {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("Description")]), _vm._v(" "), _c("th", {
+  }, [_vm._v("Descipción")]), _vm._v(" "), _c("th", {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("Price")]), _vm._v(" "), _c("th", {
+  }, [_vm._v("Precio")]), _vm._v(" "), _c("th", {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("User")]), _vm._v(" "), _c("th", {
+  }, [_vm._v("Usuario")]), _vm._v(" "), _c("th", {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("Category")]), _vm._v(" "), _c("th", {
+  }, [_vm._v("Categoría")]), _vm._v(" "), _c("th", {
     attrs: {
       colspan: "2"
     }
@@ -210,7 +230,7 @@ var render = function render() {
         name: "addproduct"
       }
     }
-  }, [_vm._v("Add")])], 1)])]), _vm._v(" "), _c("tbody", _vm._l(_vm.products, function (product) {
+  }, [_vm._v("Añadir")])], 1)])]), _vm._v(" "), _c("tbody", _vm._l(_vm.displayedProducts, function (product) {
     return _c("tr", {
       key: product.id
     }, [_c("th", [_vm._v(_vm._s(product.id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(product.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(product.description))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(product.price))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.getUserById(_vm.CleanNumber(product.user_id))))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.getCategoryById(_vm.CleanNumber(product.category_id))))]), _vm._v(" "), _c("td", [_c("router-link", {
@@ -223,7 +243,7 @@ var render = function render() {
           }
         }
       }
-    }, [_vm._v("Edit")])], 1), _vm._v(" "), _c("td", [_c("a", {
+    }, [_vm._v("Editar")])], 1), _vm._v(" "), _c("td", [_c("a", {
       staticClass: "btn btn-danger",
       attrs: {
         type: "button"
@@ -233,8 +253,26 @@ var render = function render() {
           return _vm.deleteproduct(product.id);
         }
       }
-    }, [_vm._v("Delete")])])]);
-  }), 0)])])])]);
+    }, [_vm._v("Eliminar")])])]);
+  }), 0)]), _vm._v(" "), _c("div", {
+    staticClass: "text-center mt-4 mb-4"
+  }, [_c("button", {
+    staticClass: "btn btn-secondary",
+    attrs: {
+      disabled: _vm.currentPage === 1
+    },
+    on: {
+      click: _vm.prevPage
+    }
+  }, [_vm._v("\n          Anterior\n        ")]), _vm._v(" "), _c("span", [_vm._v(_vm._s(_vm.currentPage))]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-secondary",
+    attrs: {
+      disabled: _vm.currentPage * _vm.productsPerPage >= _vm.products.length
+    },
+    on: {
+      click: _vm.nextPage
+    }
+  }, [_vm._v("\n          Siguiente\n        ")])])])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;

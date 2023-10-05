@@ -34,7 +34,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _context.next = 2;
               return _this.axios.post("/api/category", _this.category).then(function (response) {
                 _this.$router.push({
-                  name: "categorys"
+                  name: "showcategory"
                 });
               })["catch"](function (error) {
                 console.log(error);
@@ -80,7 +80,7 @@ var render = function render() {
     }
   }, [_c("div", {
     staticClass: "form-group"
-  }, [_c("label", [_vm._v("Name")]), _vm._v(" "), _c("input", {
+  }, [_c("label", [_vm._v("Nombre")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -112,7 +112,7 @@ var staticRenderFns = [function () {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "card-header"
-  }, [_c("h4", [_vm._v("Add category")])]);
+  }, [_c("h4", [_vm._v("Añadir categoría")])]);
 }];
 render._withStripped = true;
 

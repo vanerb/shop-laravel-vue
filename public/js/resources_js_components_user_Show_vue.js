@@ -19,14 +19,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   name: "users",
   data: function data() {
     return {
+      currentPage: 1,
+      // Página actual
+      usersPerPage: 6,
+      // Productos por página
       users: []
     };
+  },
+  computed: {
+    displayedUser: function displayedUser() {
+      var startIndex = (this.currentPage - 1) * this.usersPerPage;
+      var endIndex = startIndex + this.usersPerPage;
+      return this.users.slice(startIndex, endIndex);
+    }
   },
   mounted: function mounted() {
     console.log("Component mounted");
     this.showUser();
   },
   methods: {
+    prevPage: function prevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    },
+    nextPage: function nextPage() {
+      var lastPage = Math.ceil(this.users.length / this.usersPerPage);
+      if (this.currentPage < lastPage) {
+        this.currentPage++;
+      }
+    },
     showUser: function showUser() {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -100,7 +122,7 @@ var render = function render() {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("Name")]), _vm._v(" "), _c("th", {
+  }, [_vm._v("Nombre")]), _vm._v(" "), _c("th", {
     attrs: {
       scope: "col"
     }
@@ -115,7 +137,7 @@ var render = function render() {
         name: "register"
       }
     }
-  }, [_vm._v("Add")])], 1)])]), _vm._v(" "), _c("tbody", _vm._l(_vm.users, function (user) {
+  }, [_vm._v("Add")])], 1)])]), _vm._v(" "), _c("tbody", _vm._l(_vm.displayedUser, function (user) {
     return _c("tr", {
       key: user.id
     }, [_c("th", [_vm._v(_vm._s(user.id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(user.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(user.email))]), _vm._v(" "), _c("td", [_c("router-link", {
@@ -128,7 +150,7 @@ var render = function render() {
           }
         }
       }
-    }, [_vm._v("Edit")])], 1), _vm._v(" "), _c("td", [_c("a", {
+    }, [_vm._v("Editar")])], 1), _vm._v(" "), _c("td", [_c("a", {
       staticClass: "btn btn-danger",
       attrs: {
         type: "button"
@@ -138,8 +160,26 @@ var render = function render() {
           return _vm.deleteuser(user.id);
         }
       }
-    }, [_vm._v("Delete")])])]);
-  }), 0)])])])]);
+    }, [_vm._v("Eliminar")])])]);
+  }), 0)]), _vm._v(" "), _c("div", {
+    staticClass: "text-center mt-4 mb-4"
+  }, [_c("button", {
+    staticClass: "btn btn-secondary",
+    attrs: {
+      disabled: _vm.currentPage === 1
+    },
+    on: {
+      click: _vm.prevPage
+    }
+  }, [_vm._v("\n          Anterior\n        ")]), _vm._v(" "), _c("span", [_vm._v(_vm._s(_vm.currentPage))]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-secondary",
+    attrs: {
+      disabled: _vm.currentPage * _vm.usersPerPage >= _vm.users.length
+    },
+    on: {
+      click: _vm.nextPage
+    }
+  }, [_vm._v("\n          Siguiente\n        ")])])])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
