@@ -5,7 +5,8 @@
         <h4>Editar producto</h4>
       </div>
       <div class="card-body">
-        <form @submit.prevent="actualize" enctype="multipart/form-data">
+        <form method="POST" @submit.prevent="actualize" enctype="multipart/form-data">
+          
           <div class="form-group">
             <label>Nombre</label>
             <input type="text" class="form-control" v-model="product.name" />
@@ -19,6 +20,9 @@
               v-model="product.description"
             />
           </div>
+
+          
+
           <div class="form-group">
             <label>Precio</label>
             <input type="text" class="form-control" v-model="product.price" />
@@ -76,6 +80,7 @@ export default {
     this.showCategory();
   },
   methods: {
+   
     CleanNumber(numeroString) {
       const numero = parseInt(numeroString, 10); // Convierte la cadena en un número entero
       return numero.toString(); // Convierte el número nuevamente en una cadena
@@ -85,10 +90,11 @@ export default {
         .get(`/api/product/${this.$route.params.id}`)
         .then((response) => {
           console.log(response.data);
-          const { name, description, price, category_id } = response.data;
+          const { name, description, price, category_id, image } = response.data;
           (this.product.name = name),
             (this.product.description = description),
             (this.product.price = price),
+            (this.product.image = image),
             (this.product.category_id = this.CleanNumber(category_id));
         })
         .catch((error) => {
@@ -109,11 +115,13 @@ export default {
     },
 
     async actualize() {
-      this.product.user_id = this.info.user_id;
-     
-      this.axios
+      
+      this.product.user_id = this.CleanNumber(this.info.user_id) ;
+      
+      await this.axios
         .put(`/api/product/${this.$route.params.id}`, this.product)
         .then((response) => {
+          console.log(response.data);
           this.$router.push({
             name: "showproduct",
           });

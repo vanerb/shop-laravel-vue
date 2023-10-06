@@ -5,34 +5,62 @@
     <div class="row">
       <div
         class="col-md-4 mt-4"
-        v-for="(product) in displayedProducts"
+        v-for="product in displayedProducts"
         :key="product.id"
       >
         <div class="card">
-          <div class="card-header text-center">
-            <h1>{{ product.name }}</h1>
-          </div>
-          <div class="card-body text-center">
-            <p>{{ product.description }}</p>
-            <h4>{{ product.price }} €</h4>
-          </div>
-          <div class="card-footer">
+          <router-link
+            :to="{
+              name: 'showproductid',
+              params: { id: product.id },
+            }"
+          >
+            <div class="card-header text-center">
+              <h1>{{ product.name }}</h1>
+            </div>
+            <div class="card-body text-center">
+              <img
+                class="mx-auto"
+                :src="'storage/' + product.image"
+                alt=""
+                width="300"
+                height="300"
+              />
+              <p>{{ product.description }}</p>
+              <h4>{{ product.price }} €</h4>
+            </div>
+          </router-link>
+        
+        <div class="card-footer">
+          <div v-if="isLogged">
             <button class="btn btn-success w-100" @click="comprar(product.id)">
               Comprar
             </button>
           </div>
+
+          <div v-if="!isLogged">
+            <router-link :to="{ name: 'login' }" class="btn btn-success w-100"
+              >Iniciar sesión</router-link
+            >
+          </div>
+        </div>
         </div>
       </div>
     </div>
 
     <div class="text-center mt-4 mb-4">
-      <button class="btn btn-secondary" @click="prevPage" :disabled="currentPage === 1">Anterior</button>
+      <button
+        class="btn btn-secondary"
+        @click="prevPage"
+        :disabled="currentPage === 1"
+      >
+        Anterior
+      </button>
       <span>{{ currentPage }}</span>
-      <button class="btn btn-secondary"
+      <button
+        class="btn btn-secondary"
         @click="nextPage"
-        :disabled="
-          currentPage * productsPerPage >= products.length
-        "
+        :disabled="currentPage * productsPerPage >= products.length"
       >
         Siguiente
       </button>
@@ -64,6 +92,13 @@ export default {
 
       // Acceder a las propiedades del objeto
       return userObject;
+    },
+    isLogged() {
+      if (this.info !== null) {
+        return true;
+      } else {
+        return false;
+      }
     },
 
     displayedProducts() {

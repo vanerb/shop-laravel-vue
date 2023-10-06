@@ -28,6 +28,12 @@
       </div>
     </div>
 
+    <div class="row">
+      <div class="col-md-12">
+        <button type="button" class="btn btn-success w-100 mt-4">Tramitar pedido</button>
+      </div>
+    </div>
+
     <div class="text-center mt-4 mb-4">
       <button
         class="btn btn-secondary"

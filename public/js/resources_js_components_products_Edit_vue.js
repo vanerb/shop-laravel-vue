@@ -62,8 +62,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   name = _response$data.name,
                   description = _response$data.description,
                   price = _response$data.price,
-                  category_id = _response$data.category_id;
-                _this.product.name = name, _this.product.description = description, _this.product.price = price, _this.product.category_id = _this.CleanNumber(category_id);
+                  category_id = _response$data.category_id,
+                  image = _response$data.image;
+                _this.product.name = name, _this.product.description = description, _this.product.price = price, _this.product.image = image, _this.product.category_id = _this.CleanNumber(category_id);
               })["catch"](function (error) {
                 console.log(error);
               });
@@ -101,15 +102,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
           while (1) switch (_context3.prev = _context3.next) {
             case 0:
-              _this3.product.user_id = _this3.info.user_id;
-              _this3.axios.put("/api/product/".concat(_this3.$route.params.id), _this3.product).then(function (response) {
+              _this3.product.user_id = _this3.CleanNumber(_this3.info.user_id);
+              _context3.next = 3;
+              return _this3.axios.put("/api/product/".concat(_this3.$route.params.id), _this3.product).then(function (response) {
+                console.log(response.data);
                 _this3.$router.push({
                   name: "showproduct"
                 });
               })["catch"](function (error) {
                 console.error(error);
               });
-            case 2:
+            case 3:
             case "end":
               return _context3.stop();
           }
@@ -143,6 +146,7 @@ var render = function render() {
     staticClass: "card-body"
   }, [_c("form", {
     attrs: {
+      method: "POST",
       enctype: "multipart/form-data"
     },
     on: {

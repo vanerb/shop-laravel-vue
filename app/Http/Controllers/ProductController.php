@@ -76,6 +76,11 @@ class ProductController extends Controller
         return response()->json([
             'product' => $product
         ]);
+
+        
+
+
+       
     }
 
     /**
@@ -83,6 +88,14 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+
+        $previousImage = $product->image;
+        $isImageInUse = Product::where('image', $previousImage)->where('id', '!=', $product->id)->exists();
+        if (!$isImageInUse) {
+            Storage::delete('public/' . $previousImage);
+        }
+
+
         $product->delete();
         return response()->json([
             'mensaje' => 'producto borrado con exito'

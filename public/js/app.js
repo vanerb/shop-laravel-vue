@@ -5386,6 +5386,9 @@ var EditProduct = function EditProduct() {
 var AddProduct = function AddProduct() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_products_Add_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/products/Add.vue */ "./resources/js/components/products/Add.vue"));
 };
+var ShowProductId = function ShowProductId() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_ShowItem_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/ShowItem.vue */ "./resources/js/components/ShowItem.vue"));
+};
 
 //Rutas especificas categorias
 
@@ -5496,6 +5499,10 @@ var routes = [{
   name: 'showbasket',
   path: '/showbasket',
   component: ShowBasket
+}, {
+  name: 'showproductid',
+  path: '/showproductid/:id',
+  component: ShowProductId
 }];
 
 /***/ }),
@@ -25624,7 +25631,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_Home_vue":1,"resources_js_components_Contact_vue":1,"resources_js_components_Shop_vue":1,"resources_js_components_AdminPanel_vue":1,"resources_js_components_products_Show_vue":1,"resources_js_components_products_Edit_vue":1,"resources_js_components_products_Add_vue":1,"resources_js_components_category_Show_vue":1,"resources_js_components_category_Edit_vue":1,"resources_js_components_category_Add_vue":1,"resources_js_components_user_Login_vue":1,"resources_js_components_user_Register_vue":1,"resources_js_components_user_Logout_vue":1,"resources_js_components_user_Show_vue":1,"resources_js_components_user_Edit_vue":1,"resources_js_components_basket_Show_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_Home_vue":1,"resources_js_components_Contact_vue":1,"resources_js_components_Shop_vue":1,"resources_js_components_AdminPanel_vue":1,"resources_js_components_products_Show_vue":1,"resources_js_components_products_Edit_vue":1,"resources_js_components_products_Add_vue":1,"resources_js_components_ShowItem_vue":1,"resources_js_components_category_Show_vue":1,"resources_js_components_category_Edit_vue":1,"resources_js_components_category_Add_vue":1,"resources_js_components_user_Login_vue":1,"resources_js_components_user_Register_vue":1,"resources_js_components_user_Logout_vue":1,"resources_js_components_user_Show_vue":1,"resources_js_components_user_Edit_vue":1,"resources_js_components_basket_Show_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

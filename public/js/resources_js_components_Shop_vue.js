@@ -41,6 +41,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       // Acceder a las propiedades del objeto
       return userObject;
     },
+    isLogged: function isLogged() {
+      if (this.info !== null) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     displayedProducts: function displayedProducts() {
       var startIndex = (this.currentPage - 1) * this.productsPerPage;
       var endIndex = startIndex + this.productsPerPage;
@@ -136,20 +143,44 @@ var render = function render() {
       staticClass: "col-md-4 mt-4"
     }, [_c("div", {
       staticClass: "card"
+    }, [_c("router-link", {
+      attrs: {
+        to: {
+          name: "showproductid",
+          params: {
+            id: product.id
+          }
+        }
+      }
     }, [_c("div", {
       staticClass: "card-header text-center"
     }, [_c("h1", [_vm._v(_vm._s(product.name))])]), _vm._v(" "), _c("div", {
       staticClass: "card-body text-center"
-    }, [_c("p", [_vm._v(_vm._s(product.description))]), _vm._v(" "), _c("h4", [_vm._v(_vm._s(product.price) + " €")])]), _vm._v(" "), _c("div", {
+    }, [_c("img", {
+      staticClass: "mx-auto",
+      attrs: {
+        src: "storage/" + product.image,
+        alt: "",
+        width: "300",
+        height: "300"
+      }
+    }), _vm._v(" "), _c("p", [_vm._v(_vm._s(product.description))]), _vm._v(" "), _c("h4", [_vm._v(_vm._s(product.price) + " €")])])]), _vm._v(" "), _c("div", {
       staticClass: "card-footer"
-    }, [_c("button", {
+    }, [_vm.isLogged ? _c("div", [_c("button", {
       staticClass: "btn btn-success w-100",
       on: {
         click: function click($event) {
           return _vm.comprar(product.id);
         }
       }
-    }, [_vm._v("\n            Comprar\n          ")])])])]);
+    }, [_vm._v("\n            Comprar\n          ")])]) : _vm._e(), _vm._v(" "), !_vm.isLogged ? _c("div", [_c("router-link", {
+      staticClass: "btn btn-success w-100",
+      attrs: {
+        to: {
+          name: "login"
+        }
+      }
+    }, [_vm._v("Iniciar sesión")])], 1) : _vm._e()])], 1)]);
   }), 0), _vm._v(" "), _c("div", {
     staticClass: "text-center mt-4 mb-4"
   }, [_c("button", {
@@ -160,7 +191,7 @@ var render = function render() {
     on: {
       click: _vm.prevPage
     }
-  }, [_vm._v("Anterior")]), _vm._v(" "), _c("span", [_vm._v(_vm._s(_vm.currentPage))]), _vm._v(" "), _c("button", {
+  }, [_vm._v("\n      Anterior\n    ")]), _vm._v(" "), _c("span", [_vm._v(_vm._s(_vm.currentPage))]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-secondary",
     attrs: {
       disabled: _vm.currentPage * _vm.productsPerPage >= _vm.products.length

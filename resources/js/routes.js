@@ -9,6 +9,7 @@ const AdminPanel = ()=> import('./components/AdminPanel.vue');
 const ShowProduct = ()=> import('./components/products/Show.vue');
 const EditProduct = ()=> import('./components/products/Edit.vue');
 const AddProduct = ()=> import('./components/products/Add.vue');
+const ShowProductId = ()=> import('./components/ShowItem.vue');
 
 //Rutas especificas categorias
 
@@ -119,6 +120,11 @@ export const routes = [
         name:'showbasket',
         path: '/showbasket',
         component: ShowBasket
+     },
+     {
+        name:'showproductid',
+        path: '/showproductid/:id',
+        component: ShowProductId
      },
 
 

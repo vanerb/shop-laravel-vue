@@ -31,6 +31,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
+      isAdded: false,
       product: {
         name: "",
         description: "",
@@ -68,10 +69,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               console.log(formData);
               _context.next = 11;
               return _this.axios.post("/api/product", formData).then(function (response) {
+                _this.isAdded = true;
                 _this.$router.push({
                   name: "showproduct"
                 });
               })["catch"](function (error) {
+                _this.isAdded = false;
                 console.log(error);
               });
             case 11:
@@ -125,7 +128,93 @@ var render = function render() {
     staticClass: "container"
   }, [_c("div", {
     staticClass: "card"
-  }, [_vm._m(0), _vm._v(" "), _c("div", {
+  }, [_c("div", {
+    staticClass: "card-header"
+  }, [_vm.isAdded ? _c("svg", {
+    staticClass: "float-end",
+    attrs: {
+      "xmlns:svg": "http://www.w3.org/2000/svg",
+      xmlns: "http://www.w3.org/2000/svg",
+      "xmlns:xlink": "http://www.w3.org/1999/xlink",
+      version: "1.0",
+      width: "32px",
+      height: "32px",
+      viewBox: "0 0 128 128",
+      "xml:space": "preserve"
+    }
+  }, [_c("g", [_c("path", {
+    attrs: {
+      d: "M71 39.2V.4a63.6 63.6 0 0 1 33.96 14.57L77.68 42.24a25.53 25.53 0 0 0-6.7-3.03z",
+      fill: "#000000"
+    }
+  }), _vm._v(" "), _c("path", {
+    attrs: {
+      d: "M71 39.2V.4a63.6 63.6 0 0 1 33.96 14.57L77.68 42.24a25.53 25.53 0 0 0-6.7-3.03z",
+      fill: "#e1e1e1",
+      transform: "rotate(45 64 64)"
+    }
+  }), _vm._v(" "), _c("path", {
+    attrs: {
+      d: "M71 39.2V.4a63.6 63.6 0 0 1 33.96 14.57L77.68 42.24a25.53 25.53 0 0 0-6.7-3.03z",
+      fill: "#e1e1e1",
+      transform: "rotate(90 64 64)"
+    }
+  }), _vm._v(" "), _c("path", {
+    attrs: {
+      d: "M71 39.2V.4a63.6 63.6 0 0 1 33.96 14.57L77.68 42.24a25.53 25.53 0 0 0-6.7-3.03z",
+      fill: "#e1e1e1",
+      transform: "rotate(135 64 64)"
+    }
+  }), _vm._v(" "), _c("path", {
+    attrs: {
+      d: "M71 39.2V.4a63.6 63.6 0 0 1 33.96 14.57L77.68 42.24a25.53 25.53 0 0 0-6.7-3.03z",
+      fill: "#bebebe",
+      transform: "rotate(180 64 64)"
+    }
+  }), _vm._v(" "), _c("path", {
+    attrs: {
+      d: "M71 39.2V.4a63.6 63.6 0 0 1 33.96 14.57L77.68 42.24a25.53 25.53 0 0 0-6.7-3.03z",
+      fill: "#979797",
+      transform: "rotate(225 64 64)"
+    }
+  }), _vm._v(" "), _c("path", {
+    attrs: {
+      d: "M71 39.2V.4a63.6 63.6 0 0 1 33.96 14.57L77.68 42.24a25.53 25.53 0 0 0-6.7-3.03z",
+      fill: "#6e6e6e",
+      transform: "rotate(270 64 64)"
+    }
+  }), _vm._v(" "), _c("path", {
+    attrs: {
+      d: "M71 39.2V.4a63.6 63.6 0 0 1 33.96 14.57L77.68 42.24a25.53 25.53 0 0 0-6.7-3.03z",
+      fill: "#3c3c3c",
+      transform: "rotate(315 64 64)"
+    }
+  }), _vm._v(" "), _c("animateTransform", {
+    attrs: {
+      attributeName: "transform",
+      type: "rotate",
+      values: "0 64 64;45 64 64;90 64 64;135 64 64;180 64 64;225 64 64;270 64 64;315 64 64",
+      calcMode: "discrete",
+      dur: "720ms",
+      repeatCount: "indefinite"
+    }
+  })], 1), _vm._v(" "), _c("g", [_c("circle", {
+    attrs: {
+      fill: "#000000",
+      cx: "63.66",
+      cy: "63.16",
+      r: "12"
+    }
+  }), _vm._v(" "), _c("animate", {
+    attrs: {
+      attributeName: "opacity",
+      dur: "720ms",
+      begin: "0s",
+      repeatCount: "indefinite",
+      keyTimes: "0;0.5;1",
+      values: "1;0;1"
+    }
+  })])]) : _vm._e(), _vm._v(" "), _c("h4", [_vm._v("Añadir producto")])]), _vm._v(" "), _c("div", {
     staticClass: "card-body"
   }, [_c("form", {
     attrs: {
@@ -249,13 +338,7 @@ var render = function render() {
     }
   }, [_vm._v("Guardar")])])])])]);
 };
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "card-header"
-  }, [_c("h4", [_vm._v("Añadir producto")])]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 
