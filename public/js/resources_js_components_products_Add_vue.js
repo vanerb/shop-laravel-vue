@@ -35,6 +35,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         name: "",
         description: "",
         price: "",
+        image: "",
         category_id: ""
       },
       categorys: []
@@ -44,22 +45,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.showCategory();
   },
   methods: {
+    handleImageChange: function handleImageChange(event) {
+      var selectedImage = event.target.files[0];
+      this.product.image = selectedImage;
+    },
     addproduct: function addproduct() {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var formData;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              _this.product.user_id = _this.info.user_id;
-              _context.next = 3;
-              return _this.axios.post("/api/product", _this.product).then(function (response) {
+              //this.product.user_id = this.info.user_id;
+              console.log(_this.product);
+              formData = new FormData();
+              formData.append("name", _this.product.name);
+              formData.append("description", _this.product.description);
+              formData.append("price", _this.product.price);
+              formData.append("image", _this.product.image); // Aquí agregamos la imagen
+              formData.append("category_id", _this.product.category_id);
+              formData.append("user_id", _this.info.user_id);
+              console.log(formData);
+              _context.next = 11;
+              return _this.axios.post("/api/product", formData).then(function (response) {
                 _this.$router.push({
                   name: "showproduct"
                 });
               })["catch"](function (error) {
                 console.log(error);
               });
-            case 3:
+            case 11:
             case "end":
               return _context.stop();
           }
@@ -113,6 +128,9 @@ var render = function render() {
   }, [_vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "card-body"
   }, [_c("form", {
+    attrs: {
+      enctype: "multipart/form-data"
+    },
     on: {
       submit: function submit($event) {
         $event.preventDefault();
@@ -162,6 +180,17 @@ var render = function render() {
         if ($event.target.composing) return;
         _vm.$set(_vm.product, "description", $event.target.value);
       }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", [_vm._v("Imagen")]), _vm._v(" "), _c("input", {
+    ref: "imageInput",
+    staticClass: "form-control",
+    attrs: {
+      type: "file"
+    },
+    on: {
+      change: _vm.handleImageChange
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-group"

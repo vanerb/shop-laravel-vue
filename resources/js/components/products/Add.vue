@@ -5,7 +5,7 @@
         <h4>Añadir producto</h4>
       </div>
       <div class="card-body">
-        <form @submit.prevent="addproduct">
+        <form @submit.prevent="addproduct" enctype="multipart/form-data">
           <div class="form-group">
             <label>Nombre</label>
             <input type="text" class="form-control" v-model="product.name" />
@@ -17,6 +17,16 @@
               type="text"
               class="form-control"
               v-model="product.description"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Imagen</label>
+            <input
+              type="file"
+              class="form-control"
+              @change="handleImageChange"
+              ref="imageInput"
             />
           </div>
 
@@ -65,6 +75,7 @@ export default {
         name: "",
         description: "",
         price: "",
+        image: "",
         category_id: "",
       },
       categorys: [],
@@ -74,12 +85,23 @@ export default {
     this.showCategory();
   },
   methods: {
-    
-
+    handleImageChange(event) {
+      const selectedImage = event.target.files[0];
+      this.product.image = selectedImage;
+    },
     async addproduct() {
-      this.product.user_id = this.info.user_id;
+      //this.product.user_id = this.info.user_id;
+      console.log(this.product);
+      const formData = new FormData();
+      formData.append("name", this.product.name);
+      formData.append("description", this.product.description);
+      formData.append("price", this.product.price);
+      formData.append("image", this.product.image); // Aquí agregamos la imagen
+      formData.append("category_id", this.product.category_id);
+      formData.append("user_id", this.info.user_id);
+      console.log(formData);
       await this.axios
-        .post("/api/product", this.product)
+        .post("/api/product", formData)
         .then((response) => {
           this.$router.push({ name: "showproduct" });
         })

@@ -9,6 +9,7 @@
               <th scope="col">Nombre</th>
               <th scope="col">Descipción</th>
               <th scope="col">Precio</th>
+              <th scope="col">Imagen</th>
               <th scope="col">Usuario</th>
               <th scope="col">Categoría</th>
               <th colspan="2">
@@ -26,6 +27,7 @@
               <td>{{ product.name }}</td>
               <td>{{ product.description }}</td>
               <td>{{ product.price }}</td>
+              <td>{{ product.image }}</td>
               <td>{{ getUserById(CleanNumber(product.user_id)) }}</td>
               <td>{{ getCategoryById(CleanNumber(product.category_id)) }}</td>
               <td>

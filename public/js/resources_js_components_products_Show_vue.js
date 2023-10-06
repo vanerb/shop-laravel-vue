@@ -215,6 +215,10 @@ var render = function render() {
     attrs: {
       scope: "col"
     }
+  }, [_vm._v("Imagen")]), _vm._v(" "), _c("th", {
+    attrs: {
+      scope: "col"
+    }
   }, [_vm._v("Usuario")]), _vm._v(" "), _c("th", {
     attrs: {
       scope: "col"
@@ -233,7 +237,7 @@ var render = function render() {
   }, [_vm._v("Añadir")])], 1)])]), _vm._v(" "), _c("tbody", _vm._l(_vm.displayedProducts, function (product) {
     return _c("tr", {
       key: product.id
-    }, [_c("th", [_vm._v(_vm._s(product.id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(product.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(product.description))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(product.price))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.getUserById(_vm.CleanNumber(product.user_id))))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.getCategoryById(_vm.CleanNumber(product.category_id))))]), _vm._v(" "), _c("td", [_c("router-link", {
+    }, [_c("th", [_vm._v(_vm._s(product.id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(product.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(product.description))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(product.price))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(product.image))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.getUserById(_vm.CleanNumber(product.user_id))))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(_vm.getCategoryById(_vm.CleanNumber(product.category_id))))]), _vm._v(" "), _c("td", [_c("router-link", {
       staticClass: "btn btn-primary",
       attrs: {
         to: {

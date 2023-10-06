@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -33,7 +34,24 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = Product::create($request->post());
+        $formData = $request->all();
+
+        $product = new Product();
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public');
+            $product->image = str_replace('public/', '', $imagePath);
+        }
+
+        // Asignar los campos del producto desde FormData
+        $product->name = $formData['name'];
+        $product->description = $formData['description'];
+        $product->price = $formData['price'];
+        $product->category_id = $formData['category_id'];
+        $product->user_id = $formData['user_id'];
+
+        $product->save();
+
         return response()->json([
             'product' => $product
         ]);
@@ -54,6 +72,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $product->fill($request->post())->save();
+
         return response()->json([
             'product' => $product
         ]);

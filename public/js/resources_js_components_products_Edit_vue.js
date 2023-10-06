@@ -35,6 +35,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         name: "",
         description: "",
         price: "",
+        image: "",
         category_id: ""
       },
       categorys: []
@@ -106,7 +107,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   name: "showproduct"
                 });
               })["catch"](function (error) {
-                console.log(error);
+                console.error(error);
               });
             case 2:
             case "end":
@@ -141,6 +142,9 @@ var render = function render() {
   }, [_vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "card-body"
   }, [_c("form", {
+    attrs: {
+      enctype: "multipart/form-data"
+    },
     on: {
       submit: function submit($event) {
         $event.preventDefault();

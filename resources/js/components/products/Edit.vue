@@ -5,7 +5,7 @@
         <h4>Editar producto</h4>
       </div>
       <div class="card-body">
-        <form @submit.prevent="actualize">
+        <form @submit.prevent="actualize" enctype="multipart/form-data">
           <div class="form-group">
             <label>Nombre</label>
             <input type="text" class="form-control" v-model="product.name" />
@@ -19,7 +19,6 @@
               v-model="product.description"
             />
           </div>
-
           <div class="form-group">
             <label>Precio</label>
             <input type="text" class="form-control" v-model="product.price" />
@@ -66,7 +65,8 @@ export default {
         name: "",
         description: "",
         price: "",
-        category_id: ""
+        image: "",
+        category_id: "",
       },
       categorys: [],
     };
@@ -84,13 +84,12 @@ export default {
       this.axios
         .get(`/api/product/${this.$route.params.id}`)
         .then((response) => {
-            console.log(response.data);
+          console.log(response.data);
           const { name, description, price, category_id } = response.data;
-            (this.product.name = name),
+          (this.product.name = name),
             (this.product.description = description),
             (this.product.price = price),
             (this.product.category_id = this.CleanNumber(category_id));
-
         })
         .catch((error) => {
           console.log(error);
@@ -111,6 +110,7 @@ export default {
 
     async actualize() {
       this.product.user_id = this.info.user_id;
+     
       this.axios
         .put(`/api/product/${this.$route.params.id}`, this.product)
         .then((response) => {
@@ -119,7 +119,7 @@ export default {
           });
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         });
     },
   },
