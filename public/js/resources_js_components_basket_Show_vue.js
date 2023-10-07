@@ -190,7 +190,7 @@ var render = function render() {
         }
       }
     }, [_vm._v("Delete")])])])])])])]);
-  }), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("div", {
     staticClass: "text-center mt-4 mb-4"
   }, [_c("button", {
     staticClass: "btn btn-secondary",
@@ -210,20 +210,7 @@ var render = function render() {
     }
   }, [_vm._v("\n      Siguiente\n    ")])])], 2);
 };
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-md-12"
-  }, [_c("button", {
-    staticClass: "btn btn-success w-100 mt-4",
-    attrs: {
-      type: "button"
-    }
-  }, [_vm._v("Tramitar pedido")])])]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 

@@ -5193,17 +5193,12 @@ var render = function render() {
         name: "showbasket"
       }
     }
-  }, [_vm._v("Cesta")])], 1) : _vm._e(), _vm._v(" "), _vm.isAdmin ? _c("li", {
-    staticClass: "nav-item"
-  }, [_c("router-link", {
-    staticClass: "nav-link btn btn-link",
-    attrs: {
-      "exact-active-class": "active",
-      to: {
-        name: "adminpanel"
-      }
+  }, [_c("i", {
+    staticClass: "fa-solid fa-basket-shopping fs-4",
+    staticStyle: {
+      color: "#e9ecef"
     }
-  }, [_vm._v("Administrar")])], 1) : _vm._e(), _vm._v(" "), !_vm.isLoggedIn ? _c("li", {
+  }), _vm._v("\n            Cesta")])], 1) : _vm._e(), _vm._v(" "), !_vm.isLoggedIn ? _c("li", {
     staticClass: "nav-item"
   }, [_c("a", {
     staticClass: "nav-link btn btn-link",
@@ -5218,14 +5213,24 @@ var render = function render() {
       click: _vm.redirectToRegister
     }
   }, [_vm._v("Registrarse")])]) : _vm._e(), _vm._v(" "), _vm.isLoggedIn ? _c("li", {
-    staticClass: "nav-item"
+    staticClass: "nav-item dropdown"
   }, [_c("a", {
-    staticClass: "nav-link btn btn-link",
-    on: {
-      click: _vm.logout
+    staticClass: "nav-link dropdown-toggle",
+    attrs: {
+      href: "#",
+      role: "button",
+      "data-bs-toggle": "dropdown",
+      "aria-expanded": "false"
     }
-  }, [_vm._v("Cerrar Sesión")])]) : _vm._e(), _vm._v(" "), _vm.isLoggedIn ? _c("li", [_c("router-link", {
-    staticClass: "nav-link btn btn-link",
+  }, [_c("i", {
+    staticClass: "fa-solid fa-user fs-4",
+    staticStyle: {
+      color: "#e9ecef"
+    }
+  }), _vm._v("\n            " + _vm._s(_vm.info.user.name))]), _vm._v(" "), _c("ul", {
+    staticClass: "dropdown-menu bg-dark"
+  }, [_c("li", [_c("router-link", {
+    staticClass: "dropdown-item text-light hover-text",
     attrs: {
       "exact-active-class": "active",
       to: {
@@ -5235,7 +5240,39 @@ var render = function render() {
         }
       }
     }
-  }, [_vm._v(_vm._s(_vm.info.user.name))])], 1) : _vm._e()])])]), _vm._v(" "), _c("div", [_c("router-view")], 1)]);
+  }, [_c("i", {
+    staticClass: "fa-solid fa-user fs-4",
+    staticStyle: {
+      color: "#e9ecef"
+    }
+  }), _vm._v("\n                Mi perfil")])], 1), _vm._v(" "), _vm.isAdmin ? _c("li", {
+    staticClass: "nav-item"
+  }, [_c("router-link", {
+    staticClass: "dropdown-item text-light hover-text",
+    attrs: {
+      "exact-active-class": "active",
+      to: {
+        name: "adminpanel"
+      }
+    }
+  }, [_c("i", {
+    staticClass: "fa-solid fa-screwdriver-wrench fs-4",
+    staticStyle: {
+      color: "#e9ecef"
+    }
+  }), _vm._v("\n                Administrar")])], 1) : _vm._e()])]) : _vm._e(), _vm._v(" "), _vm.isLoggedIn ? _c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link btn btn-link",
+    on: {
+      click: _vm.logout
+    }
+  }, [_c("i", {
+    staticClass: "fa-solid fa-door-open fs-4",
+    staticStyle: {
+      color: "#e9ecef"
+    }
+  }), _vm._v("\n            Cerrar Sesión")])]) : _vm._e()])])]), _vm._v(" "), _c("div", [_c("router-view")], 1)]);
 };
 var staticRenderFns = [function () {
   var _vm = this,

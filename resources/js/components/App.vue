@@ -50,20 +50,17 @@
         <ul class="navbar-nav float-end mr-2">
           <li v-if="isAdmin" class="nav-item">
             <router-link
-            exact-active-class="active"
+              exact-active-class="active"
               :to="{ name: 'showbasket' }"
               class="nav-link btn btn-link"
-              >Cesta</router-link
+              ><i
+                class="fa-solid fa-basket-shopping fs-4"
+                style="color: #e9ecef"
+              ></i>
+              Cesta</router-link
             >
           </li>
-          <li v-if="isAdmin" class="nav-item">
-            <router-link
-            exact-active-class="active"
-              :to="{ name: 'adminpanel' }"
-              class="nav-link btn btn-link"
-              >Administrar</router-link
-            >
-          </li>
+
           <li v-if="!isLoggedIn" class="nav-item">
             <a class="nav-link btn btn-link" @click="redirectToLogin"
               >Iniciar Sesión</a
@@ -74,12 +71,48 @@
               >Registrarse</a
             >
           </li>
-          <li v-if="isLoggedIn" class="nav-item">
-            <a class="nav-link btn btn-link" @click="logout">Cerrar Sesión</a>
+
+          <li class="nav-item dropdown" v-if="isLoggedIn">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              ><i class="fa-solid fa-user fs-4" style="color: #e9ecef"></i>
+              {{ info.user.name }}</a
+            >
+
+            <ul class="dropdown-menu bg-dark">
+              <li>
+                <router-link
+                  exact-active-class="active"
+                  class="dropdown-item text-light hover-text"
+                  :to="{ name: 'edituser', params: { id: info.user.id } }"
+                  ><i class="fa-solid fa-user fs-4" style="color: #e9ecef"></i>
+                  Mi perfil</router-link
+                >
+              </li>
+              <li v-if="isAdmin" class="nav-item">
+                <router-link
+                  exact-active-class="active"
+                  :to="{ name: 'adminpanel' }"
+                  class="dropdown-item text-light hover-text"
+                  ><i
+                    class="fa-solid fa-screwdriver-wrench fs-4"
+                    style="color: #e9ecef"
+                  ></i>
+                  Administrar</router-link
+                >
+              </li>
+              
+            </ul>
           </li>
-          <li v-if="isLoggedIn">
-            <router-link exact-active-class="active" class="nav-link btn btn-link" :to="{name: 'edituser', params: { id: info.user.id}}">{{ info.user.name }}</router-link>
-           
+          <li v-if="isLoggedIn" class="nav-item">
+            <a class="nav-link btn btn-link" @click="logout"
+              ><i class="fa-solid fa-door-open fs-4" style="color: #e9ecef"></i>
+              Cerrar Sesión</a
+            >
           </li>
         </ul>
       </div>

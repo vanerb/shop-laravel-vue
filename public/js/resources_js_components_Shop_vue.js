@@ -144,6 +144,7 @@ var render = function render() {
     }, [_c("div", {
       staticClass: "card"
     }, [_c("router-link", {
+      staticClass: "text-decoration-none",
       attrs: {
         to: {
           name: "showproductid",

@@ -9,7 +9,7 @@
         :key="product.id"
       >
         <div class="card">
-          <router-link
+          <router-link class="text-decoration-none"
             :to="{
               name: 'showproductid',
               params: { id: product.id },

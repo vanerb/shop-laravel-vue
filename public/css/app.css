@@ -12014,3 +12014,7 @@ body {
 .container {
   padding: 2px 16px;
 }
+
+.hover-text {
+  color: #212529;
+}
