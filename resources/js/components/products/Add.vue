@@ -109,7 +109,7 @@
 
           <div class="form-group">
             <label>Categoría</label>
-            <select class="form-control" v-model="product.category_id">
+            <select class="form-control bg-black text-white" v-model="product.category_id">
               <option
                 v-for="category in categorys"
                 :key="category.id"
