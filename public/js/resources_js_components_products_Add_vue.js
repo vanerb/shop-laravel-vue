@@ -327,6 +327,7 @@ var render = function render() {
   }, _vm._l(_vm.categorys, function (category) {
     return _c("option", {
       key: category.id,
+      staticClass: "select-options",
       domProps: {
         value: category.id
       }

@@ -42,7 +42,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   name = _response$data.name,
                   email = _response$data.email,
                   password = _response$data.password;
-                _this.user.name = name, _this.user.email = email, _this.user.password = password;
+                _this.user.name = name, _this.user.email = email, _this.user.password = "";
               })["catch"](function (error) {
                 console.log(error);
               });

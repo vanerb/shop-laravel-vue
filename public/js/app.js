@@ -5230,7 +5230,7 @@ var render = function render() {
   }), _vm._v("\n            " + _vm._s(_vm.info.user.name))]), _vm._v(" "), _c("ul", {
     staticClass: "dropdown-menu bg-dark"
   }, [_c("li", [_c("router-link", {
-    staticClass: "dropdown-item text-light hover-text",
+    staticClass: "dropdown-item text-light hover-text header-option",
     attrs: {
       "exact-active-class": "active",
       to: {
@@ -5248,7 +5248,7 @@ var render = function render() {
   }), _vm._v("\n                Mi perfil")])], 1), _vm._v(" "), _vm.isAdmin ? _c("li", {
     staticClass: "nav-item"
   }, [_c("router-link", {
-    staticClass: "dropdown-item text-light hover-text",
+    staticClass: "dropdown-item text-light hover-text header-option",
     attrs: {
       "exact-active-class": "active",
       to: {

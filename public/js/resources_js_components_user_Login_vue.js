@@ -18,6 +18,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      isFormError: false,
       credentials: {
         email: "",
         password: ""
@@ -25,6 +26,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
+    closeModal: function closeModal() {
+      this.isFormError = false;
+    },
     login: function login() {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -40,13 +44,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.$router.push({
                     name: "mostrarBlogs"
                   });
+                  _this.isFormError = false;
+                  window.location.href = "/";
                 })["catch"](function (error) {
                   // Se ha producido un error en la solicitud
                   console.error("Error al registrar usuario:", error);
+                  _this.isFormError = true;
                   // Puedes manejar el error aquí
                 });
               } catch (error) {
                 console.error("Error al iniciar sesión:", error);
+                _this.isFormError = true;
               }
             case 1:
             case "end":
@@ -75,7 +83,7 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "container"
+    staticClass: "container relative"
   }, [_c("div", {
     staticClass: "card"
   }, [_vm._m(0), _vm._v(" "), _c("div", {
@@ -138,7 +146,9 @@ var render = function render() {
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("Iniciar Sesión")])])])])]);
+  }, [_vm._v("Iniciar Sesión")])])])]), _vm._v(" "), _vm.isFormError ? _c("div", {
+    staticClass: "div-warning"
+  }, [_c("span", [_vm._v("El usuario o contraseña no son correctos")])]) : _vm._e()]);
 };
 var staticRenderFns = [function () {
   var _vm = this,

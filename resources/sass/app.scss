@@ -39,6 +39,15 @@ body {
     margin-top: 20px;
 }
 
+.select-options{
+    background-color: #0f2027;
+    color: #e9ecef;
+}
+
+.header-option:hover{
+    background-color: #0f2027;
+    color: #e9ecef;
+}
 
 
 .card-header {
@@ -65,4 +74,20 @@ body {
 
 .hover-text{
     color: #212529;
+}
+
+.image-fit{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.div-warning{
+    width: 100%;
+    background-color: rgb(161, 20, 20);
+    color: white;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
 }

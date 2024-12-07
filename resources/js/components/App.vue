@@ -87,7 +87,7 @@
               <li>
                 <router-link
                   exact-active-class="active"
-                  class="dropdown-item text-light hover-text"
+                  class="dropdown-item text-light hover-text header-option"
                   :to="{ name: 'edituser', params: { id: info.user.id } }"
                   ><i class="fa-solid fa-user fs-4" style="color: #e9ecef"></i>
                   Mi perfil</router-link
@@ -97,7 +97,7 @@
                 <router-link
                   exact-active-class="active"
                   :to="{ name: 'adminpanel' }"
-                  class="dropdown-item text-light hover-text"
+                  class="dropdown-item text-light hover-text header-option"
                   ><i
                     class="fa-solid fa-screwdriver-wrench fs-4"
                     style="color: #e9ecef"

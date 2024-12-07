@@ -71,7 +71,7 @@ export default {
           const { name, email, password } = response.data;
             (this.user.name = name),
             (this.user.email = email),
-            (this.user.password = password)
+            (this.user.password = "")
 
         })
         .catch((error) => {

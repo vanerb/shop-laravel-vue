@@ -20,11 +20,10 @@
             </div>
             <div class="card-body text-center">
               <img
-                class="mx-auto"
+                class="mx-auto image-fit"
                 :src="'storage/' + product.image"
                 alt=""
-                width="300"
-                height="300"
+            
               />
               <p>{{ product.description }}</p>
               <h4>{{ product.price }} €</h4>

@@ -158,12 +158,10 @@ var render = function render() {
     }, [_c("h1", [_vm._v(_vm._s(product.name))])]), _vm._v(" "), _c("div", {
       staticClass: "card-body text-center"
     }, [_c("img", {
-      staticClass: "mx-auto",
+      staticClass: "mx-auto image-fit",
       attrs: {
         src: "storage/" + product.image,
-        alt: "",
-        width: "300",
-        height: "300"
+        alt: ""
       }
     }), _vm._v(" "), _c("p", [_vm._v(_vm._s(product.description))]), _vm._v(" "), _c("h4", [_vm._v(_vm._s(product.price) + " €")])])]), _vm._v(" "), _c("div", {
       staticClass: "card-footer"
